@@ -80,14 +80,14 @@ pub fn line_too_long(lineno: usize, line: &str, settings: &Settings) -> Option<D
 
 /// E101
 pub fn mixed_spaces_and_tabs(lineno: usize, line: &str) -> Option<Diagnostic> {
-    let line_length = line.chars().count();
+    let indent = leading_space(&line);
 
-    if leading_space(&line).contains(" ") && leading_space(&line).contains("\t") {
+    if indent.contains(" ") && indent.contains("\t") {
         Some(Diagnostic::new(
             violations::MixedSpacesAndTabs,
             Range::new(
                 Location::new(lineno + 1, 0),
-                Location::new(lineno + 1, line_length),
+                Location::new(lineno + 1, indent.chars().count()),
             ),
         ))
     } else {
