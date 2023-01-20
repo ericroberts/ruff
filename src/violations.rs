@@ -54,7 +54,7 @@ define_violation!(
 impl Violation for MixedSpacesAndTabs {
     #[derive_message_formats]
     fn message(&self) -> String {
-        format!("Line has both tabs and spaces")
+        format!("Indentation contains mixed spaces and tabs")
     }
 }
 
