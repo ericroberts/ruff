@@ -78,6 +78,32 @@ pub fn line_too_long(lineno: usize, line: &str, settings: &Settings) -> Option<D
     }
 }
 
+/// E101
+pub fn mixed_spaces_and_tabs(lineno: usize, line: &str) -> Option<Diagnostic> {
+    let line_length = line.chars().count();
+
+    let re = Regex::new(r"\A\s*").unwrap();
+
+    if re.is_match(line) {
+        let leading_whitespace = re.find(line).map(|x| x.as_str()).unwrap_or("");
+
+        if leading_whitespace.contains(" ") && leading_whitespace.contains("\t") {
+            println!("spaces and tabs");
+            Some(Diagnostic::new(
+                violations::MixedSpacesAndTabs,
+                Range::new(
+                    Location::new(lineno + 1, 0),
+                    Location::new(lineno + 1, line_length),
+                ),
+            ))
+        } else {
+            None
+        }
+    } else {
+        None
+    }
+}
+
 /// W505
 pub fn doc_line_too_long(lineno: usize, line: &str, settings: &Settings) -> Option<Diagnostic> {
     let Some(limit) = settings.pycodestyle.max_doc_length else {

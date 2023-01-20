@@ -16,6 +16,7 @@ ruff_macros::define_rule_mapping!(
     // pycodestyle errors
     E401 => violations::MultipleImportsOnOneLine,
     E402 => violations::ModuleImportNotAtTopOfFile,
+    E101 => violations::MixedSpacesAndTabs,
     E501 => violations::LineTooLong,
     E711 => violations::NoneComparison,
     E712 => violations::TrueFalseComparison,
@@ -550,6 +551,7 @@ impl Rule {
             Rule::UnusedNOQA => &LintSource::NoQa,
             Rule::LineTooLong
             | Rule::NoNewLineAtEndOfFile
+            | Rule::MixedSpacesAndTabs
             | Rule::DocLineTooLong
             | Rule::PEP3120UnnecessaryCodingComment
             | Rule::BlanketTypeIgnore

@@ -599,6 +599,7 @@ For more, see [pycodestyle](https://pypi.org/project/pycodestyle/2.9.1/) on PyPI
 #### Error (E)
 | Code | Name | Message | Fix |
 | ---- | ---- | ------- | --- |
+| E101 | MixedSpacesAndTabs | Line has both tabs and spaces |  |
 | E401 | MultipleImportsOnOneLine | Multiple imports on one line |  |
 | E402 | ModuleImportNotAtTopOfFile | Module level import not at top of file |  |
 | E501 | LineTooLong | Line too long ({length} > {limit} characters) |  |

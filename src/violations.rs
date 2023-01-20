@@ -48,6 +48,16 @@ impl Violation for LineTooLong {
     }
 }
 
+define_violation!(
+    pub struct MixedSpacesAndTabs;
+);
+impl Violation for MixedSpacesAndTabs {
+    #[derive_message_formats]
+    fn message(&self) -> String {
+        format!("Line has both tabs and spaces")
+    }
+}
+
 #[derive(Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum EqCmpop {
     Eq,
